@@ -1,24 +1,20 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import logging
 from app.logger.log_config import configure_logging
+from app.middleware.log_middleware import LogMiddleware
 
 configure_logging()
-logging.getLogger("watchfiles").setLevel(logging.WARNING)
+
+
 
 
 app = FastAPI()
-
+app.add_middleware(LogMiddleware)
 
 app = FastAPI(
     title='FastAPI Template',
     description='Just use in your project'
 )
-
-@app.get('/ping')
-async def ping():
-    return 'Server is running'
-
 
 origins = [
     "http://localhost",  
@@ -32,3 +28,7 @@ app.add_middleware(
     allow_methods=["*"], 
     allow_headers=["*"],  
 )
+
+@app.get('/ping')
+async def ping():
+    return 'Server is running'
