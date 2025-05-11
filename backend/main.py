@@ -6,8 +6,6 @@ from app.middleware.log_middleware import LogMiddleware
 configure_logging()
 
 
-
-
 app = FastAPI()
 app.add_middleware(LogMiddleware)
 
