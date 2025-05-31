@@ -5,26 +5,24 @@ from app.middleware.log_middleware import LogMiddleware
 
 configure_logging()
 
-
-app = FastAPI()
-app.add_middleware(LogMiddleware)
-
 app = FastAPI(
     title='FastAPI Template',
     description='Just use in your project'
 )
 
+app.add_middleware(LogMiddleware)
+
 origins = [
-    "http://localhost",  
-    "http://localhost:8080",  
+    "http://localhost",
+    "http://localhost:8080",
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"], 
-    allow_headers=["*"],  
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.get('/ping')

@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     container_name: api
     volumes:
-      - ./app:/app
+      - .:/app
     networks:
       - netapi
     ports:

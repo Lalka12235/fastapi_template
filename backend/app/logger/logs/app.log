@@ -21,3 +21,5 @@
 [2025-05-11 13:43:01] uvicorn.error:93 INFO    - Finished server process [21356]
 [2025-05-11 13:43:01] uvicorn.error:116 INFO    - Stopping reloader process [13500]
 [2025-05-11 13:48:43] uvicorn.error:55 WARNING - WatchFiles detected changes in 'main.py'. Reloading...
+[2025-05-31 05:15:23] root:25 INFO    - GET http://127.0.0.1:8000/docs - 200 - 0.72ms
+[2025-05-31 05:15:23] root:25 INFO    - GET http://127.0.0.1:8000/openapi.json - 200 - 0.70ms
