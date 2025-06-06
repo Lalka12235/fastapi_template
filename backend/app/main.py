@@ -25,6 +25,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get('/ping')
+@app.get('/ping',
+        summary="Проверка работоспособности сервера",
+        description='Этот эндпоинт выполняет простую проверку состояния сервера.',
+        tags=['Health Check'],
+        )
 async def ping():
     return 'Server is running'
