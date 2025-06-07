@@ -6,7 +6,7 @@ def configure_logging(level=logging.INFO, log_file='app/logger/logs/app.log'):
     os.makedirs(os.path.dirname(log_file), exist_ok=True)
 
     watchfiles_logger = logging.getLogger('watchfiles.main')
-    watchfiles_logger.setLevel(logging.WARNING)  # или logging.ERROR
+    watchfiles_logger.setLevel(logging.WARNING)
 
     formatter = logging.Formatter(
         fmt='[%(asctime)s] %(name)s:%(lineno)d %(levelname)-7s - %(message)s',
