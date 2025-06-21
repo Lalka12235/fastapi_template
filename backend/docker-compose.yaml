@@ -4,12 +4,10 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: api
-    volumes:
-      - .:/app
     networks:
       - netapi
     ports:
-      - "8000:8000"
+      - "5050:8000"
     
 
 
