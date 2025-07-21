@@ -22,7 +22,7 @@ services:
 
   backend:
     build:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.uv #or Dockerfile.pip
       context: .
     container_name: api
     env_file:
