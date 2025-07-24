@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings,SettingsConfigDict
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -20,8 +20,10 @@ class Settings(BaseSettings):
     def async_db_url(self):
         return f'postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}'
     
-    class Config:
-        env_file = str(BASE_DIR / '.env')
+    model_config = SettingsConfigDict(
+        env_file=BASE_DIR / '.env',         # Указывает, что настройки будут загружаться из файла .env
+        extra='ignore'           # Игнорировать дополнительные поля в .env, которых нет в классе Settings
+    )
 
     #@property
     #def get_secret_key(self):

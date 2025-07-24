@@ -1,9 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.logger.log_config import configure_logging
 from app.middleware.log_middleware import LogMiddleware
 
-configure_logging()
+
 
 app = FastAPI(
     title='FastAPI Template',
