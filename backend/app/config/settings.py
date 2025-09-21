@@ -1,16 +1,22 @@
 from pydantic_settings import BaseSettings,SettingsConfigDict
+from pydantic import Field
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 class Settings(BaseSettings):
-    DB_HOST: str
-    DB_PORT: int
-    DB_USER: str
-    DB_PASS: str
-    DB_NAME: str
-    #SECRET_KEY: str
+    """
+    Класс настроек приложения, загружающий переменные из окружения.
+    Использует Pydantic-Settings для безопасной и удобной работы с конфигурацией.
+    """
+
+    # --- Настройки базы данных ---
+    DB_HOST: str = Field(..., description="Хост базы данных PostgreSQL")
+    DB_PORT: int = Field(..., description="Порт базы данных PostgreSQL")
+    DB_USER: str = Field(..., description="Имя пользователя базы данных PostgreSQL")
+    DB_PASS: str = Field(..., description="Пароль пользователя базы данных PostgreSQL")
+    DB_NAME: str = Field(..., description="Имя базы данных PostgreSQL")
 
     @property
     def sync_db_url(self):
@@ -21,13 +27,9 @@ class Settings(BaseSettings):
         return f'postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}'
     
     model_config = SettingsConfigDict(
-        env_file=BASE_DIR / '.env',         # Указывает, что настройки будут загружаться из файла .env
-        extra='ignore'           # Игнорировать дополнительные поля в .env, которых нет в классе Settings
+        env_file=BASE_DIR / '.env',
+        extra='ignore'
     )
-
-    #@property
-    #def get_secret_key(self):
-    #    return self.SECRET_KEY
 
 
 
